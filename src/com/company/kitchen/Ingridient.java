@@ -6,22 +6,23 @@ package com.company.kitchen;
 public class Ingridient {
      // region Instance Fields
     private String name;
-    private double overallQuantity;
-    private double recieptQuantity;
+    private double quantity;
     private double unitPrice;
     // endregion
 
     // region Constructors
-    public Ingridient(String name, double overallQuantity, double unitPrice) {
+
+    public Ingridient(String name, double quantity, double unitPrice) {
         this.name = name;
-        this.overallQuantity = overallQuantity;
+        this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
+
 // endregion
 
     // region Member Methods
     public void printInfo(){
-        System.out.println(name + "\t" + "quantity - " + overallQuantity + ", unit price - " + unitPrice);
+        System.out.println(name + "\t" + "quantity - " + quantity + ", unit price - " + unitPrice);
     }
     // endregion
 
@@ -35,20 +36,12 @@ public class Ingridient {
         this.name = name;
     }
 
-    public double getOverallQuantity() {
-        return overallQuantity;
+    public double getQuantity() {
+        return quantity;
     }
 
-    public void setOverallQuantity(double overallQuantity) {
-        this.overallQuantity = overallQuantity;
-    }
-
-    public double getRecieptQuantity() {
-        return recieptQuantity;
-    }
-
-    public void setRecieptQuantity(double recieptQuantity) {
-        this.recieptQuantity = recieptQuantity;
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
     }
 
     public double getUnitPrice() {
