@@ -32,7 +32,8 @@ public class Main {
         System.out.println("5. Show ingridients list");
         System.out.println("6. Show recepts list");
         System.out.println("7. Show recept description");
-        System.out.println("8. Cook a dish");
+        System.out.println("8. Modify ingredient");
+        System.out.println("9. Cook a dish");
         Scanner scanner = new Scanner(System.in);
         int userInput = scanner.nextInt();
 
@@ -44,16 +45,22 @@ public class Main {
                 break;
             case 2:
                 if (kitchen == null){
-                    System.out.println("Enter ingridients first");
+                    System.out.println("Enter ingredients first");
                 }
-                System.out.println("Choose which ingridient you want to remove");
+                System.out.println("Choose which ingredient you want to remove");
+                kitchen.printIngridentsInfo();
                 int removeIngridientIndex = scanner.nextInt();
                 for (int i = 0; i < kitchen.getIngridients().size(); i++){
                     if (i == removeIngridientIndex-1){
                         kitchen.removeIngridientInKitchen(kitchen.getIngridients().get(i));
                     }
                 }
-               
+            case 3:
+                System.out.println("Choose which ingredient you want to add to your reciept from a list");
+                kitchen.printIngridentsInfo();
+                System.out.println();
+                System.out.println("or write add and then add new ingredient to your reciept");
+
 
 
         }

@@ -49,6 +49,14 @@ public class Kitchen {
         }
         return false;
     }
+
+    public void printIngridentsInfo (){
+        for (int i = 0; i < ingridients.size(); i++){
+            System.out.print(i + 1 + ". ");
+           ingridients.get(i).printInfo();
+            System.out.println();
+        }
+    }
     public boolean cookADish(Reciepts reciepts){
         if (reciepts != null){
             for (int i = 0; i < reciepts.getReciept().size(); i++){
