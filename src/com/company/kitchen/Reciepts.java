@@ -8,11 +8,15 @@ import java.util.ArrayList;
 public class Reciepts {
     // region Instance Fields
     private ArrayList <Ingridient> reciept;
+    private String name;
     // endregion
 
     // region Constructors
     public Reciepts() {
         reciept = new ArrayList <Ingridient>();
+    }
+    public Reciepts (String name){
+        this.name = name;
     }
     // endregion
 
@@ -64,5 +68,14 @@ public class Reciepts {
     public void setReciept(ArrayList<Ingridient> reciept) {
         this.reciept = reciept;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     // endregion
 }

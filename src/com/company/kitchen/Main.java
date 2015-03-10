@@ -19,7 +19,11 @@ public class Main {
 
     public static void main(String[] args) {
 	    Kitchen kitchen = new Kitchen();
-        menu(kitchen);
+        do {
+            if (menu(kitchen)){
+                return;
+            }
+        }   while (true);
 
 
     }
@@ -32,8 +36,7 @@ public class Main {
         System.out.println("5. Show ingridients list");
         System.out.println("6. Show recepts list");
         System.out.println("7. Show recept description");
-        System.out.println("8. Modify ingredient");
-        System.out.println("9. Cook a dish");
+        System.out.println("8. Cook a dish");
         Scanner scanner = new Scanner(System.in);
         int userInput = scanner.nextInt();
 
@@ -44,8 +47,9 @@ public class Main {
                 kitchen.addIngridentInKitchen(ingrident);
                 break;
             case 2:
-                if (kitchen == null){
+                if (kitchen.getIngridients().size() == 0){
                     System.out.println("Enter ingredients first");
+                    break;
                 }
                 System.out.println("Choose which ingredient you want to remove");
                 kitchen.printIngridentsInfo();
@@ -55,15 +59,46 @@ public class Main {
                         kitchen.removeIngridientInKitchen(kitchen.getIngridients().get(i));
                     }
                 }
+                break;
             case 3:
+                boolean check = true;
+                System.out.println("Enter your recept name");
+                Reciepts recept = new Reciepts(scanner.next());
                 System.out.println("Choose which ingredient you want to add to your reciept from a list");
                 kitchen.printIngridentsInfo();
-                System.out.println();
-                System.out.println("or write add and then add new ingredient to your reciept");
+                int userIndex = scanner.nextInt();
+                do {
+                double quantity;
+                for (int i = 0; i < kitchen.getIngridients().size(); i++){
+                    if (userIndex-1 == i){
+                        System.out.println("Please enter quantity");
+                        quantity = scanner.nextDouble();
+                        recept.addIngridientInReciept(kitchen.getIngridients().get(i), quantity);
+                        kitchen.printIngridentsInfo();
+                    }
+                }
+                    System.out.println("Choose  next which ingredient you want to add to your reciept from a list or press 0 to exit");
+                    kitchen.printIngridentsInfo();
+                    userIndex = scanner.nextInt();
+                    if (userIndex == 0){
+                        check = false;
+                    }  else {
+                        if (userIndex < 0 && userIndex > kitchen.getIngridients().size() ){
+                            check = false;
+                        }
+                    }
+
+                } while (check == true);
 
 
 
+                break;
         }
-        return true;
+        return false;
     }
 }
+
+
+
+
+
