@@ -22,12 +22,11 @@ public class Ingridient {
 
     // region Member Methods
     public void printInfo(){
-        System.out.println(name + "\t" + "quantity - " + quantity + ", unit price - " + unitPrice);
+        System.out.print(name + "\t" + "quantity - " + quantity + ", unit price - " + unitPrice);
     }
     // endregion
 
     // region Setters and Getters
-
     public String getName() {
         return name;
     }

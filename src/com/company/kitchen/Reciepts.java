@@ -12,11 +12,9 @@ public class Reciepts {
     // endregion
 
     // region Constructors
-    public Reciepts() {
-        reciept = new ArrayList <Ingridient>();
-    }
-    public Reciepts (String name){
+    public Reciepts(String name) {
         this.name = name;
+        reciept = new ArrayList <Ingridient>();
     }
     // endregion
 
@@ -47,16 +45,10 @@ public class Reciepts {
             return;
         }
         int overallCost = 0;
+        System.out.println(name);
         for(int i = 0; i < reciept.size(); i++){
-            System.out.print(reciept.get(i).getName());
-            System.out.print("\t");
-            System.out.print("quantity - " + reciept.get(i).getQuantity());
-            System.out.print("\t");
-            System.out.print("Total cost of ingredient is " + reciept.get(i).getQuantity() * reciept.get(i).getUnitPrice());
-            overallCost += reciept.get(i).getQuantity() * reciept.get(i).getUnitPrice();
+            System.out.println(reciept.get(i).getName());
         }
-        System.out.println("________________________________________________________________________________");
-        System.out.println("Overall cost of food is " + overallCost);
     }
 
     // region Setters and Getters

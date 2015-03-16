@@ -9,12 +9,14 @@ public class Kitchen {
     // region Instance Fields
     private ArrayList <Ingridient> ingridients;
     private ArrayList <Reciepts> recieptses;
+    private ArrayList<Reciepts> dishesList;
     // endregion
 
     // Constructors
     public Kitchen() {
         ingridients = new ArrayList<Ingridient>();
         recieptses = new ArrayList<Reciepts>();
+        dishesList = new ArrayList<Reciepts>();
     }
     // endregion
 
@@ -57,19 +59,46 @@ public class Kitchen {
             System.out.println();
         }
     }
+    public void printReceptesInfo (){
+        for (int i = 0; i < recieptses.size(); i++){
+            System.out.print(i + 1 + " ");
+            recieptses.get(i).printInfo();
+            System.out.println();
+        }
+    }
+
+    public void printReceptDescription(Reciepts reciepts){
+        int sum = 0;
+        for ( int i = 0; i < reciepts.getReciept().size(); i++) {
+            System.out.println("Ingridient name " + reciepts.getReciept().get(i).getName() + "\t" + "ingridient quantity " +
+                    reciepts.getReciept().get(i).getQuantity() + "\t" + "ingridient total cost "
+                    + reciepts.getReciept().get(i).getUnitPrice() * reciepts.getReciept().get(i).getQuantity());
+            sum += reciepts.getReciept().get(i).getUnitPrice() * reciepts.getReciept().get(i).getQuantity();
+        }
+        System.out.println("_____________________________________________________");
+        System.out.println("Overall cost is " + sum + " drams.");
+    }
     public boolean cookADish(Reciepts reciepts){
         if (reciepts != null){
             for (int i = 0; i < reciepts.getReciept().size(); i++){
-                for ( int j = 0; j < ingridients.size(); j++){
-                    if (reciepts.getReciept().get(i).getName() == ingridients.get(j).getName()){
+                for (int j = 0; j < ingridients.size(); j++){
+                    if (reciepts.getReciept().get(i).getName().equals(ingridients.get(j).getName())){
                        if(ingridients.get(j).getQuantity()-reciepts.getReciept().get(i).getQuantity() > 0 ){
-                           return true;
+                          ingridients.get(j).setQuantity(ingridients.get(j).getQuantity()-reciepts.getReciept().get(i).getQuantity());
                        }
                     }
                 }
             }
+            dishesList.add(reciepts);
+            return true;
         }
         return false;
+    }
+
+    public void printDishesList (){
+        for (int i = 0; i < dishesList.size(); i++){
+            System.out.println(dishesList.get(i).getName());
+        }
     }
 
 
@@ -89,5 +118,14 @@ public class Kitchen {
     public void setRecieptses(ArrayList<Reciepts> recieptses) {
         this.recieptses = recieptses;
     }
+
+    public ArrayList<Reciepts> getDishesList() {
+        return dishesList;
+    }
+
+    public void setDishesList(ArrayList<Reciepts> dishesList) {
+        this.dishesList = dishesList;
+    }
+
     // endregion
 }
